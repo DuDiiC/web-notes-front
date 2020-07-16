@@ -18,19 +18,19 @@ function Login() {
                         <hr className='mx-5' />
                         <Form>
                             <Form.Group as={Row} className='mx-5'>
-                                <Form.Label column xs={3}>login</Form.Label>
-                                <Col xs={9}>
+                                <Form.Label column sm={3}><b>login</b></Form.Label>
+                                <Col sm={9}>
                                     <Form.Control type='text' placeholder='login...'></Form.Control>
                                 </Col>
                             </Form.Group>
                             <Form.Group as={Row} className='mx-5'>
-                                <Form.Label column xs={3}>hasło</Form.Label>
-                                <Col xs={9}>
+                                <Form.Label column sm={3}><b>hasło</b></Form.Label>
+                                <Col sm={9}>
                                     <Form.Control type='password' placeholder='hasło...'></Form.Control>
                                 </Col>
                             </Form.Group>
                             <Form.Group as={Row} className='d-flex justify-content-center'>
-                                <Button type='submit' variant='dark'>
+                                <Button type='submit' variant='outline-dark'>
                                     Zaloguj
                                 </Button>
                             </Form.Group>
