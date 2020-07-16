@@ -1,0 +1,11 @@
+.form-container {
+    background-color: white;
+    border-radius: 15px 15px 15px 15px;
+    -moz-border-radius: 15px 15px 15px 15px;
+    -webkit-border-radius: 15px 15px 15px 15px;
+    box-shadow: 6px 4px 13px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 6px 4px 13px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 6px 4px 13px 0px rgba(0,0,0,0.75);
+
+    margin-top: 20%;
+}
