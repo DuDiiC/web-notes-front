@@ -4,7 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image';
-import logo from './../../images/notes-48.png';
+import logo from './../../../images/notes-48.png';
 import './navigation.css';
 
 
