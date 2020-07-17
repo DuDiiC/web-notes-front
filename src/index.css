@@ -13,3 +13,7 @@ html, body {
 .grey-text {
     color: #616161;
 }
+
+.link-text:hover {
+    opacity:90%;
+}
