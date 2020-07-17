@@ -3,32 +3,31 @@ import { Link } from 'react-router-dom';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Button from 'react-bootstrap/Button';
+import Image from 'react-bootstrap/Image';
+import logo from './../../images/notes-48.png';
 import './navigation.css';
 
 
 function Navigation() {
     return (
         <div>
-            <Navbar collapseOnSelect expand="sm" className='first-color-bg'>
+            <Navbar collapseOnSelect expand="sm">
                 <Navbar.Brand>
                     <Link to='/' className='link-text' style={{ textDecoration: 'none' }}>
-                        <Button variant='warning'>
-                            <h3 className='p-0 m-0'>
-                                <b className='grey-text'>WEB NOTES</b>
-                            </h3>
-                        </Button>
+                        <Image src={logo}></Image>
+                        <b className='grey-text'>WEB NOTES</b>
                     </Link>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className='ml-auto'>
                         <Link to='/login' style={{ textDecoration: 'none' }} >
-                            <Button variant='warning'>
+                            <Button variant='warning' className='m-2'>
                                 <b className='grey-text'>LOGOWANIE</b>
                             </Button>
                         </Link>
                         <Link to='/register' style={{ textDecoration: 'none' }}>
-                            <Button variant='warning'>
+                            <Button variant='warning' className='m-2'>
                                 <b className='grey-text'>REJESTRACJA</b>
                             </Button>
                         </Link>
