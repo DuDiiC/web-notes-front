@@ -32,7 +32,7 @@ function LandingPageContent() {
                         </a>
                     </Col>
                     <Col sm={4} className='text-center my-auto'>
-                        <a href='https://web-notes-example.herokuapp.com/swagger-ui.html' target='_blank' rel="noopener noreferrer">
+                        <a href='https://web-notes-server.herokuapp.com/swagger-ui.html' target='_blank' rel="noopener noreferrer">
                             <Button variant='warning' className='my-1'>
                                 <b className='grey-text'>Dokumentacja swagger</b>
                             </Button>
