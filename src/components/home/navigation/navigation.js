@@ -14,7 +14,7 @@ function Navigation() {
             <Navbar collapseOnSelect expand="sm">
                 <Navbar.Brand>
                     <Link to='/' className='link-text' style={{ textDecoration: 'none' }}>
-                        <Image src={logo}></Image>
+                        <Image src={logo} className='img-shadow mr-2'></Image>
                         <b className='grey-text'>WEB NOTES</b>
                     </Link>
                 </Navbar.Brand>
