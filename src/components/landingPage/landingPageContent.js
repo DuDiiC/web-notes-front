@@ -4,14 +4,14 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image';
-import noteImg from './../../../images/notes-144.png';
-import contentImg1 from './../../../images/markdown-white-100.png';
-import contentImg2 from './../../../images/todo-list-white-100.png';
-import contentImg3 from './../../../images/responsive-white-100.png';
+import LandingPageContentElement from './landingPageContentElement';
 
-import HomeContentElement from './homeContentElement';
+import noteImg from './../../images/notes-144.png';
+import contentImg1 from './../../images/markdown-white-100.png';
+import contentImg2 from './../../images/todo-list-white-100.png';
+import contentImg3 from './../../images/responsive-white-100.png';
 
-function HomeContent() {
+function LandingPageContent() {
     return (
         <div>
             <Container>
@@ -32,7 +32,7 @@ function HomeContent() {
                         </a>
                     </Col>
                     <Col sm={4} className='text-center my-auto'>
-                        <a href='https://web-notes-example.herokuapp.com/swagger-ui.html' target='_blank' rel="noopener noreferrer">
+                        <a href='https://web-notes-server.herokuapp.com/swagger-ui.html' target='_blank' rel="noopener noreferrer">
                             <Button variant='warning' className='my-1'>
                                 <b className='grey-text'>Dokumentacja swagger</b>
                             </Button>
@@ -55,7 +55,7 @@ function HomeContent() {
             <Container fluid className='mt-5 first-color-bg box-shadow'>
                 <Row className='py-5'>
                     <Col lg={4} className='text-center my-auto'>
-                        <HomeContentElement
+                        <LandingPageContentElement
                             header="Obsługa Markdowna"
                             image={contentImg1}
                             content="Notatki są tworzone przy użyciu prostego w obsłudze języka Markdown, 
@@ -63,7 +63,7 @@ function HomeContent() {
                         />
                     </Col>
                     <Col lg={4} className='text-center my-auto'>
-                        <HomeContentElement
+                        <LandingPageContentElement
                             header="Twórz, archiwizuj, usuwaj"
                             image={contentImg2}
                             content="Zarządzaj swoimi notatkami i przeglądaj tylko te aktywne. Pozostałe możesz
@@ -71,7 +71,7 @@ function HomeContent() {
                         />
                     </Col>
                     <Col lg={4} className='text-center my-auto'>
-                        <HomeContentElement
+                        <LandingPageContentElement
                             header="Wygodny, responsywny interfejs"
                             image={contentImg3}
                             content="Aplikacji można używać zarówno na komputerze, tablecie jak i telefonie -
@@ -86,4 +86,4 @@ function HomeContent() {
 
 
 
-export default HomeContent;
+export default LandingPageContent;
