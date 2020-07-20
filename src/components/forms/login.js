@@ -6,11 +6,12 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image';
-import './register.css';
-import './../login/login.css';
+
+import './forms.css';
+
 import logo from './../../images/notes-144.png';
 
-function Register() {
+function Login() {
     return (
         <div className='first-color-bg'>
             <Row>
@@ -24,15 +25,9 @@ function Register() {
                             </Link>
                         </Row>
                         <Row className='justify-content-center mb-3'>
-                            <h2 className='text-center grey-text'>REJESTRACJA</h2>
+                            <h2 className='text-center grey-text'>LOGOWANIE</h2>
                         </Row>
                         <Form>
-                            <Form.Group as={Row} className='mx-5'>
-                                <Form.Label column sm={3} className='grey-text'><b>e-mail</b></Form.Label>
-                                <Col sm={9}>
-                                    <Form.Control type='text' placeholder='e-mail...'></Form.Control>
-                                </Col>
-                            </Form.Group>
                             <Form.Group as={Row} className='mx-5'>
                                 <Form.Label column sm={3} className='grey-text'><b>login</b></Form.Label>
                                 <Col sm={9}>
@@ -47,7 +42,7 @@ function Register() {
                             </Form.Group>
                             <Form.Group as={Row} className='d-flex justify-content-center'>
                                 <Button type='submit' variant='outline-dark' className='my-2'>
-                                    Zarejestruj
+                                    Zaloguj
                                 </Button>
                             </Form.Group>
                         </Form>
@@ -60,4 +55,4 @@ function Register() {
     );
 }
 
-export default Register;
+export default Login;

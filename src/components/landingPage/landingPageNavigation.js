@@ -4,11 +4,10 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image';
-import logo from './../../../images/notes-48.png';
-import './navigation.css';
+import logo from './../../images/notes-48.png';
 
 
-function Navigation() {
+function LandingPageNavigation() {
     return (
         <div>
             <Navbar collapseOnSelect expand="sm">
@@ -38,4 +37,4 @@ function Navigation() {
     );
 }
 
-export default Navigation;
+export default LandingPageNavigation;
