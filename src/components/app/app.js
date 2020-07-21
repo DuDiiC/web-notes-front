@@ -4,6 +4,8 @@ import LandingPage from '../landingPage/landingPage';
 import Navigation from './Navigation';
 import Register from '../forms/register';
 import Login from '../forms/login';
+import LoggedMain from '../logged/loggedMain';
+
 import './app.css';
 
 function App() {
@@ -15,6 +17,7 @@ function App() {
 
         <Switch>
           <Route exact path="/" component={LandingPage} />
+          <Route exact path="/logged" component={LoggedMain} />
           <Route path='/register' component={Register} />
           <Route path="/login" component={Login} />
         </Switch>
