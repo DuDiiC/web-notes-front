@@ -10,6 +10,7 @@ import facebook from './../../images/facebook-black-100.png';
 
 function LandingPageFooter() {
     return (
+        <div className='white-bg'>
         <Container>
             <Row className='my-3'>
                 <Col xs={4} className='text-right'>
@@ -32,6 +33,7 @@ function LandingPageFooter() {
                 <p><b className='grey-text'>kontakt: Maciej.Dudek.DEV@gmail.com</b></p>
             </Row>
         </Container>
+        </div>
     );
 }
 

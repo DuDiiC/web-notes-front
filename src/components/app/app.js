@@ -34,7 +34,7 @@ class App extends Component {
     return (
       <Router>
           <div>
-            <Navbar collapseOnSelect expand="sm">
+            <Navbar collapseOnSelect expand="sm" className='white-bg'>
               <Navbar.Brand>
                 <Link to='/' className='link-text' style={{ textDecoration: 'none' }}>
                   <Image src={logo} className='img-shadow mr-2'></Image>

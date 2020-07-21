@@ -13,7 +13,7 @@ import contentImg3 from './../../images/responsive-white-100.png';
 
 function LandingPageContent() {
     return (
-        <div>
+        <div className='white-bg'>
             <Container>
                 <Row className='d-flex justify-content-center'>
                     <h1 className='text-center grey-text'>
