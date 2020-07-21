@@ -26,6 +26,10 @@ class AuthService {
         localStorage.removeItem('token');
         localStorage.removeItem('login');
     }
+
+    getToken() {
+        return localStorage.getItem('token');
+    }
 }
 
 export default new AuthService();
