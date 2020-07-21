@@ -13,8 +13,11 @@ class AuthService {
                     password
                 })
                 .then(response => {
-                    console.log(response.headers);
-                    return response;
+                    if(response.headers['authorization']) {
+                        localStorage.setItem('token', response.headers['authorization'])
+                        localStorage.setItem('login', username);
+                    }
+                    return response.headers;
                 })
         )
     }

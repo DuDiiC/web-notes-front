@@ -42,7 +42,6 @@ class Login extends Component {
     handleLogin(e) {
         e.preventDefault();
         AuthService.login(this.state.username, this.state.password);
-        console.log('wykonano');
     }
 
     render() {
