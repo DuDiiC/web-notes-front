@@ -5,7 +5,6 @@ const APP_URL = 'https://web-notes-server.herokuapp.com/';
 
 class AuthService {
     login(username, password) {
-        console.log(APP_URL + 'login');
         return (
             axios
                 .post(APP_URL + 'login', {
