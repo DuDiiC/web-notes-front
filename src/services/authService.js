@@ -21,6 +21,11 @@ class AuthService {
                 })
         )
     }
+
+    logout() {
+        localStorage.removeItem('token');
+        localStorage.removeItem('login');
+    }
 }
 
 export default new AuthService();
