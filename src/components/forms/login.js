@@ -6,6 +6,7 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image';
+import Spinner from 'react-bootstrap/Spinner';
 
 import AuthService from './../../services/authService';
 
@@ -23,7 +24,8 @@ class Login extends Component {
 
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            loading: false
         };
     }
 
@@ -41,7 +43,25 @@ class Login extends Component {
 
     handleLogin(e) {
         e.preventDefault();
-        AuthService.login(this.state.username, this.state.password);
+
+        this.setState({
+            loading: true
+        })
+
+        AuthService.login(this.state.username, this.state.password)
+            .then(() => {
+                this.props.history.push("/logged");
+                window.location.reload();
+            }, error => {
+                this.setState({
+                    loading: false
+                })
+            });
+
+        this.setState({
+            username: '',
+            password: ''
+        })
     }
 
     render() {
@@ -64,8 +84,8 @@ class Login extends Component {
                                 <Form.Group as={Row} className='mx-5'>
                                     <Form.Label column sm={3} className='grey-text'><b>login</b></Form.Label>
                                     <Col sm={9}>
-                                        <Form.Control 
-                                            type='text' 
+                                        <Form.Control
+                                            type='text'
                                             placeholder='login...'
                                             name='username'
                                             value={this.state.username}
@@ -76,8 +96,8 @@ class Login extends Component {
                                 <Form.Group as={Row} className='mx-5'>
                                     <Form.Label column sm={3} className='grey-text'><b>hasło</b></Form.Label>
                                     <Col sm={9}>
-                                        <Form.Control 
-                                            type='password' 
+                                        <Form.Control
+                                            type='password'
                                             placeholder='hasło...'
                                             name='password'
                                             value={this.state.password}
@@ -86,12 +106,16 @@ class Login extends Component {
                                     </Col>
                                 </Form.Group>
                                 <Form.Group as={Row} className='d-flex justify-content-center'>
-                                    <Button 
+                                    <Button
                                         type='submit'
-                                        variant='outline-dark' 
-                                        className='my-2'
+                                        variant='outline-dark'
+                                        className='mb-2'
+                                        disabled={this.state.loading}
                                     >
                                         Zaloguj
+                                        {this.state.loading && (
+                                            <Spinner animation='border' variant='secondary' size='sm' className='ml-2' />
+                                        )}
                                     </Button>
                                 </Form.Group>
                             </Form>
