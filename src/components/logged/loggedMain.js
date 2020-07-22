@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import AuthService from './../../services/authService';
 import { Container } from 'react-bootstrap';
 import UserService from './../../services/userService';
 import NoteService from './../../services/noteService';
@@ -48,18 +47,17 @@ class LoggedMain extends Component {
                     <h5>
                         {this.state.user.username}
                     </h5>
-                    {this.state.user.noteIds.map(function (id) {
-                        return <li>{id}</li>
-                     }) }
-                    {this.state.notes.map(function (note) {
-                        return (
-                            <>
-                            <p>{note.id}</p>
-                            <p>{note.content}</p>
-                            </>
-                        )
+                    {this.state.user.noteIds.map((id) => {
+                        return <li key={id}>{id}</li>
                     })}
-                    
+                    {this.state.notes.map((note) => {
+                        return (
+                            <div key={note.id}>
+                                <h1>{note.id}</h1>
+                                <p>{note.content}</p>
+                            </div>
+                        );
+                    })} 
                 </Container>
             </div>
         )
