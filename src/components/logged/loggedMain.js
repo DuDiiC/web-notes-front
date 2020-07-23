@@ -51,7 +51,7 @@ class LoggedMain extends Component {
                         {this.state.notes.map((note) => {
                             return <CompactNote className='mx-2' note={note} key={note.id} />
                         })}
-                        <Col sm={6} md={4} lg={3} className='my-auto text-center'>
+                        <Col md={6} className='my-auto text-center'>
                             <Button 
                                 variant='warning' 
                                 size='lg'
