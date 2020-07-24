@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import { Container, Button, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 
 import CompactNote from '../note/compactNote';
+import CreateNoteModal from './createNote';
 
 import UserService from '../../services/userService';
 import NoteService from '../../services/noteService';
@@ -52,13 +53,7 @@ class NotesSite extends Component {
                             return <CompactNote className='mx-2' note={note} key={note.id} />
                         })}
                         <Col sm={6} md={4} lg={3} className='my-auto text-center'>
-                            <Button 
-                                variant='warning' 
-                                size='lg'
-                                className='m-3'
-                            >
-                                Dodaj nową notatkę
-                            </Button>
+                            <CreateNoteModal />
                         </Col>
                     </Row>
                 </Container>
