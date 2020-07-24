@@ -50,7 +50,7 @@ class Login extends Component {
 
         AuthService.login(this.state.username, this.state.password)
             .then(() => {
-                this.props.history.push("/logged");
+                this.props.history.push("/notes");
                 window.location.reload();
             }, error => {
                 this.setState({
@@ -68,7 +68,7 @@ class Login extends Component {
         return (
             <div>
                 { localStorage.getItem('token') && (
-                    <Redirect to="/logged" />
+                    <Redirect to="/notes" />
                 ) }
                 <div className='first-color-bg'>
                     <Row>

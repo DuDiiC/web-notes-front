@@ -15,7 +15,7 @@ function Register() {
     return (
         <div>
             { localStorage.getItem('token') && (
-                <Redirect to="/logged" />
+                <Redirect to="/notes" />
             )}
             <div className='first-color-bg'>
                 <Row>

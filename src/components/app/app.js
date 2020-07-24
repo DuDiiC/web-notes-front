@@ -4,7 +4,7 @@ import { Navbar, Nav, Button, Image } from 'react-bootstrap';
 import LandingPage from '../landingPage/landingPage';
 import Register from '../forms/register';
 import Login from '../forms/login';
-import LoggedMain from '../logged/loggedMain';
+import NotesSite from '../notesSite/notesSite';
 import AuthService from '../../services/authService';
 
 import logo from './../../images/notes-48.png';
@@ -58,7 +58,7 @@ class App extends Component {
                           <b className='grey-text'>LOGOWANIE</b>
                         </Button>
                       </Link>
-                      <Link to='/register' style={{ textDecoration: 'none' }}>
+                      <Link to='/register' style={{ textDecoration: 'none' }} >
                         <Button variant='warning' className='m-2'>
                           <b className='grey-text'>REJESTRACJA</b>
                         </Button>
@@ -71,7 +71,7 @@ class App extends Component {
           </div>
 
           <Switch>
-            <Route path="/logged" component={LoggedMain} />
+            <Route path="/notes" component={NotesSite} />
             <Route path='/register' component={Register} />
             <Route path="/login" component={Login} />
             <Route path="/" component={LandingPage} />

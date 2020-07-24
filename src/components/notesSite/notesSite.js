@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Container, Button, Row, Col } from 'react-bootstrap';
 
-import CompactNote from './../note/compactNote';
+import CompactNote from '../note/compactNote';
 
-import UserService from './../../services/userService';
-import NoteService from './../../services/noteService';
+import UserService from '../../services/userService';
+import NoteService from '../../services/noteService';
 
-class LoggedMain extends Component {
+class NotesSite extends Component {
 
     constructor(props) {
         super(props);
@@ -51,7 +51,7 @@ class LoggedMain extends Component {
                         {this.state.notes.map((note) => {
                             return <CompactNote className='mx-2' note={note} key={note.id} />
                         })}
-                        <Col md={6} className='my-auto text-center'>
+                        <Col sm={6} md={4} lg={3} className='my-auto text-center'>
                             <Button 
                                 variant='warning' 
                                 size='lg'
@@ -67,4 +67,4 @@ class LoggedMain extends Component {
     };
 }
 
-export default LoggedMain;
+export default NotesSite;
