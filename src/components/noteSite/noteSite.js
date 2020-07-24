@@ -23,9 +23,11 @@ class NoteSite extends Component {
 
     render() {
         return (
-            <Container className='py-5'>
-            <Note note={this.state.note}/>
-            </Container>
+            <div className='white-bg'>
+                <Container className='py-5'>
+                    <Note note={this.state.note} />
+                </Container>
+            </div>
         )
     };
 }

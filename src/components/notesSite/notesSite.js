@@ -38,7 +38,7 @@ class NotesSite extends Component {
 
     render() {
         return (
-            <div>
+            <div className='white-bg'>
                 {!localStorage.getItem('token') && (
                     <Redirect to="/login" />
                 )}
