@@ -1,4 +1,4 @@
-import React, { Component, setState } from 'react';
+import React, { Component } from 'react';
 import { Modal, Button, Form, Row, Col } from 'react-bootstrap';
 import ReactMarkdown from 'react-markdown';
 
@@ -82,7 +82,7 @@ class CreateNoteModal extends Component {
                     <Form onSubmit={this.createNote}>
                         <Modal.Body>
                             <Row>
-                                <Col md={6}>
+                                <Col xl={6}>
                                     <Form.Group>
                                         <Row>
                                             <Col md={2} className='my-auto text-md-right text-center'>
@@ -117,7 +117,7 @@ class CreateNoteModal extends Component {
                                         </Row>
                                     </Form.Group>
                                 </Col>
-                                <Col md={6}>
+                                <Col xl={6}>
                                     <Row className='d-flex justify-content-center'>
                                         <b className='grey-text'>Podgląd:</b>
                                     </Row>
