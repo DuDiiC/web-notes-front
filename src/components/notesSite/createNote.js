@@ -61,26 +61,27 @@ class CreateNoteModal extends Component {
 
     createNote = (e) => {
         e.preventDefault();
-
         this.setState({
             loading: true
         })
-
-        NoteService.saveNote(this.state.newNote)
-            .then((response) => {
-                console.log(response);
-                window.location.reload();
-            })
-            .catch(error => {
-                console.log(error);
-                this.setState({
-                    loading: false
+        if (this.state.newNote.title && this.state.newNote.content) {
+            console.log('zapisuję!');
+            NoteService.saveNote(this.state.newNote)
+                .then((response) => {
+                    console.log(response);
                 })
-            });
+                .catch(error => {
+                    console.log(error);
+                    this.setState({
+                        loading: false
+                    })
+                });
+        } else { console.log("Can save empty note!") }
         this.setState({
             loading: false
         })
         this.handleClose();
+        window.location.reload();
     }
 
     render() {
@@ -158,9 +159,15 @@ class CreateNoteModal extends Component {
                                     className='mb-2'
                                     disabled={this.state.loading}
                                 >
-                                    Stwórz
-                                        {this.state.loading && (
+                                    {this.state.loading ? (
+                                        <>
+                                        Tworzę...
                                         <Spinner animation='border' variant='secondary' size='sm' className='ml-2' />
+                                        </>
+                                    ) : (
+                                        <>
+                                        Stwórz
+                                        </>
                                     )}
                                 </Button>
                             </Row>
