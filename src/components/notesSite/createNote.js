@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Modal, Button, Form, Row, Col } from 'react-bootstrap';
+import { Modal, Button, Form, Row, Col, Spinner } from 'react-bootstrap';
 import ReactMarkdown from 'react-markdown';
 import NoteService from '../../services/noteService';
 
@@ -13,6 +13,7 @@ class CreateNoteModal extends Component {
                 title: '',
                 content: '',
             },
+            loading: false,
         }
 
         this.handleShow = this.handleShow.bind(this);
@@ -60,12 +61,25 @@ class CreateNoteModal extends Component {
 
     createNote = (e) => {
         e.preventDefault();
+
+        this.setState({
+            loading: true
+        })
+
         NoteService.saveNote(this.state.newNote)
             .then((response) => {
                 console.log(response);
                 window.location.reload();
             })
-            .catch(error => { console.log(error) });
+            .catch(error => {
+                console.log(error);
+                this.setState({
+                    loading: false
+                })
+            });
+        this.setState({
+            loading: false
+        })
         this.handleClose();
     }
 
@@ -138,8 +152,16 @@ class CreateNoteModal extends Component {
                         </Modal.Body>
                         <Modal.Footer>
                             <Row>
-                                <Button type='submit' variant='warning'>
-                                    <span className='grey-text'>Stwórz</span>
+                                <Button
+                                    type='submit'
+                                    variant='warning'
+                                    className='mb-2'
+                                    disabled={this.state.loading}
+                                >
+                                    Stwórz
+                                        {this.state.loading && (
+                                        <Spinner animation='border' variant='secondary' size='sm' className='ml-2' />
+                                    )}
                                 </Button>
                             </Row>
                         </Modal.Footer>
