@@ -23,11 +23,9 @@ class NoteSite extends Component {
 
     render() {
         return (
-            <div className='white-bg'>
-                <Container className='py-5'>
-                    <Note note={this.state.note} />
-                </Container>
-            </div>
+            <Container className='white-bg py-5'>
+                <Note note={this.state.note} />
+            </Container>
         )
     };
 }
