@@ -161,12 +161,12 @@ class CreateNoteModal extends Component {
                                 >
                                     {this.state.loading ? (
                                         <>
-                                        Tworzę...
-                                        <Spinner animation='border' variant='secondary' size='sm' className='ml-2' />
+                                            Tworzę...
+                                            <Spinner animation='border' variant='secondary' size='sm' className='ml-2' />
                                         </>
                                     ) : (
-                                        <>
-                                        Stwórz
+                                            <>
+                                            Stwórz
                                         </>
                                     )}
                                 </Button>
