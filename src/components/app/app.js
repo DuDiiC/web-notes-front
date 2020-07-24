@@ -5,6 +5,7 @@ import LandingPage from '../landingPage/landingPage';
 import Register from '../forms/register';
 import Login from '../forms/login';
 import NotesSite from '../notesSite/notesSite';
+import NoteSite from '../noteSite/noteSite';
 import AuthService from '../../services/authService';
 
 import logo from './../../images/notes-48.png';
@@ -76,6 +77,7 @@ class App extends Component {
           </div>
 
           <Switch>
+            <Route path="/notes/:id" component={NoteSite} />
             <Route path="/notes" component={NotesSite} />
             <Route path='/register' component={Register} />
             <Route path="/login" component={Login} />
