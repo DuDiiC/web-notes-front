@@ -29,6 +29,18 @@ class NoteService {
                 .get(API_URL + 'notes/' + id, config)
         );
     }
+
+    saveNote(note) {
+        let config = {
+            headers: {
+                Authorization: authHeader()['Authorization'],
+            },
+        }
+        return (
+            axios
+                .post(API_URL + "notes", note, config)
+        );
+    }
 }
 
 export default new NoteService();
