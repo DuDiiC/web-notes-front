@@ -45,6 +45,11 @@ class App extends Component {
               <Navbar.Collapse id="responsive-navbar-nav">
                 { token ? (
                   <Nav className='ml-auto'>
+                    <Link to='/notes' style={{ textDecoration: 'none' }}>
+                      <Button variant='warning' className='m-2'>
+                        <b className='grey-text'>NOTATKI</b>
+                      </Button>
+                    </Link>
                     <Link to='/' style={{ textDecoration: 'none' }}>
                       <Button variant='warning' className='m-2' onClick={this.logout}>
                         <b className='grey-text'>WYLOGUJ</b>
