@@ -4,7 +4,8 @@ import { Navbar, Nav, Button, Image } from 'react-bootstrap';
 import LandingPage from '../landingPage/landingPage';
 import Register from '../forms/register';
 import Login from '../forms/login';
-import LoggedMain from '../logged/loggedMain';
+import NotesSite from '../notesSite/notesSite';
+import NoteSite from '../noteSite/noteSite';
 import AuthService from '../../services/authService';
 
 import logo from './../../images/notes-48.png';
@@ -45,6 +46,11 @@ class App extends Component {
               <Navbar.Collapse id="responsive-navbar-nav">
                 { token ? (
                   <Nav className='ml-auto'>
+                    <Link to='/notes' style={{ textDecoration: 'none' }}>
+                      <Button variant='warning' className='m-2'>
+                        <b className='grey-text'>NOTATKI</b>
+                      </Button>
+                    </Link>
                     <Link to='/' style={{ textDecoration: 'none' }}>
                       <Button variant='warning' className='m-2' onClick={this.logout}>
                         <b className='grey-text'>WYLOGUJ</b>
@@ -58,7 +64,7 @@ class App extends Component {
                           <b className='grey-text'>LOGOWANIE</b>
                         </Button>
                       </Link>
-                      <Link to='/register' style={{ textDecoration: 'none' }}>
+                      <Link to='/register' style={{ textDecoration: 'none' }} >
                         <Button variant='warning' className='m-2'>
                           <b className='grey-text'>REJESTRACJA</b>
                         </Button>
@@ -71,7 +77,8 @@ class App extends Component {
           </div>
 
           <Switch>
-            <Route path="/logged" component={LoggedMain} />
+            <Route path="/notes/:id" component={NoteSite} />
+            <Route path="/notes" component={NotesSite} />
             <Route path='/register' component={Register} />
             <Route path="/login" component={Login} />
             <Route path="/" component={LandingPage} />
