@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Modal, Button, Form, Row, Col } from 'react-bootstrap';
 import ReactMarkdown from 'react-markdown';
+import NoteService from '../../services/noteService';
 
 class CreateNoteModal extends Component {
 
@@ -38,24 +39,33 @@ class CreateNoteModal extends Component {
     }
 
     onChangeTitle(e) {
-        this.setState({
+        const { value } = e.target;
+        this.setState(prevState => ({
             newNote: {
-                title: e.target.value,
+                ...prevState.newNote,
+                title: value,
             },
-        });
+        }));
     }
 
     onChangeContent(e) {
-        this.setState({
+        const { value } = e.target;
+        this.setState(prevState => ({
             newNote: {
-                content: e.target.value,
+                ...prevState.newNote,
+                content: value,
             },
-        });
+        }));
     }
 
     createNote = (e) => {
         e.preventDefault();
-        console.log("tworzę notatkę")
+        NoteService.saveNote(this.state.newNote)
+            .then((response) => {
+                console.log(response);
+                window.location.reload();
+            })
+            .catch(error => { console.log(error) });
         this.handleClose();
     }
 
