@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import Image from 'react-bootstrap/Image';
+import { Container, Form, Button, Image, Spinner, Row, Col } from 'react-bootstrap';
 
 import AuthService from './../../services/authService';
 
@@ -26,6 +21,7 @@ class Register extends Component {
             email: '',
             username: '',
             password: '',
+            loading: false,
         }
     }
 
@@ -44,13 +40,16 @@ class Register extends Component {
     handleRegister(e) {
         e.preventDefault();
 
+        this.setState({ loading: true });
+
         AuthService.register(   this.state.email,
                                 this.state.username,
                                 this.state.password)
             .then((response) => {
-                console.log(response.data);
+                this.props.history.push('/login');
+                window.location.reload();
             }, error => {
-                console.log(error);
+                this.setState({ loading: false });
             })
 
         this.setState({
@@ -118,8 +117,15 @@ class Register extends Component {
                                         </Col>
                                     </Form.Group>
                                     <Form.Group as={Row} className='d-flex justify-content-center'>
-                                        <Button type='submit' variant='outline-dark' className='my-2'>
+                                        <Button
+                                            type='submit'
+                                            variant='outline-dark'
+                                            className='my-2'
+                                            disabled={this.state.loading}>
                                             Zarejestruj
+                                            {this.state.loading && (
+                                                <Spinner animation='border' variant='secondary' size='sm' className='ml-2' />
+                                            )}
                                 </Button>
                                     </Form.Group>
                                 </Form>
