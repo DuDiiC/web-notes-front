@@ -7,6 +7,8 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image';
 
+import AuthService from './../../services/authService';
+
 import './forms.css';
 
 import logo from './../../images/notes-144.png';
@@ -42,7 +44,14 @@ class Register extends Component {
     handleRegister(e) {
         e.preventDefault();
 
-        console.log("rejestracja...");
+        AuthService.register(   this.state.email,
+                                this.state.username,
+                                this.state.password)
+            .then((response) => {
+                console.log(response.data);
+            }, error => {
+                console.log(error);
+            })
 
         this.setState({
             email: '',
