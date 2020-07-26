@@ -21,6 +21,17 @@ class AuthService {
         )
     }
 
+    register(email, username, password) {
+        return (
+            axios
+                .post(APP_URL + 'register', {
+                    username,
+                    email,
+                    password
+                })
+        )
+    }
+
     logout() {
         localStorage.removeItem('token');
         localStorage.removeItem('login');
