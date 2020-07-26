@@ -13,6 +13,44 @@ import logo from './../../images/notes-144.png';
 
 class Register extends Component {
 
+    constructor(props) {
+        super(props);
+        this.onChangeEmail = this.onChangeEmail.bind(this);
+        this.onChangeUsername = this.onChangeUsername.bind(this);
+        this.onChangePassword = this.onChangePassword.bind(this);
+        this.handleRegister = this.handleRegister.bind(this);
+
+        this.state = {
+            email: '',
+            username: '',
+            password: '',
+        }
+    }
+
+    onChangeEmail(e) {
+        this.setState({ email: e.target.value });
+    }
+
+    onChangeUsername(e) {
+        this.setState({ username: e.target.value });
+    }
+
+    onChangePassword(e) {
+        this.setState({ password: e.target.value });
+    }
+
+    handleRegister(e) {
+        e.preventDefault();
+
+        console.log("rejestracja...");
+
+        this.setState({
+            email: '',
+            username: '',
+            password: '',
+        });
+    }
+
     render() {
         return (
             <div>
@@ -33,23 +71,41 @@ class Register extends Component {
                                 <Row className='justify-content-center mb-3'>
                                     <h2 className='text-center grey-text'>REJESTRACJA</h2>
                                 </Row>
-                                <Form>
+                                <Form onSubmit={this.handleRegister}>
                                     <Form.Group as={Row} className='mx-5'>
                                         <Form.Label column sm={3} className='grey-text'><b>e-mail</b></Form.Label>
                                         <Col sm={9}>
-                                            <Form.Control type='text' placeholder='e-mail...'></Form.Control>
+                                            <Form.Control
+                                                type='text'
+                                                placeholder='e-mail...'
+                                                name='email'
+                                                value={this.state.email}
+                                                onChange={this.onChangeEmail}
+                                            />
                                         </Col>
                                     </Form.Group>
                                     <Form.Group as={Row} className='mx-5'>
                                         <Form.Label column sm={3} className='grey-text'><b>login</b></Form.Label>
                                         <Col sm={9}>
-                                            <Form.Control type='text' placeholder='login...'></Form.Control>
+                                            <Form.Control
+                                                type='text'
+                                                placeholder='login...'
+                                                name='username'
+                                                value={this.state.username}
+                                                onChange={this.onChangeUsername}
+                                            />
                                         </Col>
                                     </Form.Group>
                                     <Form.Group as={Row} className='mx-5'>
                                         <Form.Label column sm={3} className='grey-text'><b>hasło</b></Form.Label>
                                         <Col sm={9}>
-                                            <Form.Control type='password' placeholder='hasło...'></Form.Control>
+                                            <Form.Control
+                                                type='password'
+                                                placeholder='hasło...'
+                                                name='password'
+                                                value={this.state.password}
+                                                onChange={this.onChangePassword}
+                                            />
                                         </Col>
                                     </Form.Group>
                                     <Form.Group as={Row} className='d-flex justify-content-center'>
