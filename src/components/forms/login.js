@@ -41,7 +41,13 @@ class Login extends Component {
                                     <h2 className='text-center grey-text'>LOGOWANIE</h2>
                                 </Row>
                                 {this.state.wrongCredentials && (
-                                    <Alert variant='danger' className='mx-5 text-center'>Błędny login lub hasło!</Alert>
+                                    <Alert
+                                        variant='danger'
+                                        onClose={() => this.setState({ wrongCredentials: false }) }
+                                        dismissible
+                                        className='mx-5 text-center'>
+                                            Błędny login lub hasło!
+                                    </Alert>
                                 )}
                                 <Formik
                                     initialValues={{ username: '', password: '' }}
