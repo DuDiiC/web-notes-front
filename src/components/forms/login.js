@@ -84,7 +84,7 @@ class Login extends Component {
                                                     onChange={handleChange}
                                                     onBlur={handleBlur}
                                                     isInvalid={touched.username && errors.username}
-                                                    disabled={this.state.loading}
+                                                    disabled={isSubmitting}
                                                 />
                                                 {touched.username && errors.username ? (
                                                     <Form.Control.Feedback type='invalid'>{errors.username}</Form.Control.Feedback>
