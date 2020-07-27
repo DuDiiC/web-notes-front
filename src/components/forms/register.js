@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { Container, Form, Button, Image, Spinner, Row, Col } from 'react-bootstrap';
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+import { Container, Form, Button, Image, Spinner, Row, Col, Alert } from 'react-bootstrap';
 
 import AuthService from './../../services/authService';
 
@@ -12,51 +14,11 @@ class Register extends Component {
 
     constructor(props) {
         super(props);
-        this.onChangeEmail = this.onChangeEmail.bind(this);
-        this.onChangeUsername = this.onChangeUsername.bind(this);
-        this.onChangePassword = this.onChangePassword.bind(this);
-        this.handleRegister = this.handleRegister.bind(this);
 
         this.state = {
-            email: '',
-            username: '',
-            password: '',
-            loading: false,
+            registerSuccess: false,
+            registerFailed: false
         }
-    }
-
-    onChangeEmail(e) {
-        this.setState({ email: e.target.value });
-    }
-
-    onChangeUsername(e) {
-        this.setState({ username: e.target.value });
-    }
-
-    onChangePassword(e) {
-        this.setState({ password: e.target.value });
-    }
-
-    handleRegister(e) {
-        e.preventDefault();
-
-        this.setState({ loading: true });
-
-        AuthService.register(   this.state.email,
-                                this.state.username,
-                                this.state.password)
-            .then((response) => {
-                this.props.history.push('/login');
-                window.location.reload();
-            }, error => {
-                this.setState({ loading: false });
-            })
-
-        this.setState({
-            email: '',
-            username: '',
-            password: '',
-        });
     }
 
     render() {
@@ -79,56 +41,145 @@ class Register extends Component {
                                 <Row className='justify-content-center mb-3'>
                                     <h2 className='text-center grey-text'>REJESTRACJA</h2>
                                 </Row>
-                                <Form onSubmit={this.handleRegister}>
-                                    <Form.Group as={Row} className='mx-5'>
-                                        <Form.Label column sm={3} className='grey-text'><b>e-mail</b></Form.Label>
-                                        <Col sm={9}>
-                                            <Form.Control
-                                                type='text'
-                                                placeholder='e-mail...'
-                                                name='email'
-                                                value={this.state.email}
-                                                onChange={this.onChangeEmail}
-                                            />
-                                        </Col>
-                                    </Form.Group>
-                                    <Form.Group as={Row} className='mx-5'>
-                                        <Form.Label column sm={3} className='grey-text'><b>login</b></Form.Label>
-                                        <Col sm={9}>
-                                            <Form.Control
-                                                type='text'
-                                                placeholder='login...'
-                                                name='username'
-                                                value={this.state.username}
-                                                onChange={this.onChangeUsername}
-                                            />
-                                        </Col>
-                                    </Form.Group>
-                                    <Form.Group as={Row} className='mx-5'>
-                                        <Form.Label column sm={3} className='grey-text'><b>hasło</b></Form.Label>
-                                        <Col sm={9}>
-                                            <Form.Control
-                                                type='password'
-                                                placeholder='hasło...'
-                                                name='password'
-                                                value={this.state.password}
-                                                onChange={this.onChangePassword}
-                                            />
-                                        </Col>
-                                    </Form.Group>
-                                    <Form.Group as={Row} className='d-flex justify-content-center'>
-                                        <Button
-                                            type='submit'
-                                            variant='outline-dark'
-                                            className='my-2'
-                                            disabled={this.state.loading}>
-                                            Zarejestruj
-                                            {this.state.loading && (
-                                                <Spinner animation='border' variant='secondary' size='sm' className='ml-2' />
-                                            )}
-                                </Button>
-                                    </Form.Group>
-                                </Form>
+                                {this.state.registerSuccess && (
+                                    <Alert
+                                        variant='success'
+                                        onClose={() => this.setState({ registerSuccess: false })}
+                                        dismissible
+                                        className='mx-5 text-center'>
+                                            Konto utworzone pomyślnie.
+                                            Aby dokończyć rejestrację, proszę kliknąć w link aktywacyjny
+                                            wysłany na podany adres e-mail.
+                                        </Alert>
+                                )}
+                                {this.state.registerFailed && (
+                                    <Alert
+                                        variant='danger'
+                                        onClose={() => this.setState({ registerFailed: false })}
+                                        dismissible
+                                        className='mx-5 text-center'>
+                                            Rejestracja nie powiodła się. Użytkownik o podanej nazwie już istnieje.
+                                        </Alert>
+                                )}
+                                <Formik
+                                    initialValues={{ email: '', username: '', password: '', confirmPassword: '' }}
+                                    validationSchema={Yup.object().shape({
+                                        email: Yup
+                                            .string()
+                                            .email('Wprowadź poprawny adres e-mail!')
+                                            .required('Adres e-mail jest wymagany!'),
+                                        username: Yup
+                                            .string()
+                                            .min(5, 'Nazwa użytkownika nie może być krótsza niż 5 znaków!')
+                                            .matches(/^[A-Za-z]+$/, 'Nazwa użytkownika może zawierać tylko litery alfabetu łacińsiego!')
+                                            .required('Nazwa użytkownika jest wymagana!'),
+                                        password: Yup
+                                            .string()
+                                            .min(8, 'Hasło powinno zawierać 8-16 znaków!')
+                                            .max(16, 'Hasło powinno zawierać 8-16 znaków!')
+                                            .required('Hasło jest wymagane!')
+                                            .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])/,
+                                                'Hasło powinno zawirać co najmniej jedną: małą literę, dużą literę, cyfrę, znak specjalny'),
+                                        confirmPassword: Yup
+                                            .string()
+                                            .oneOf([Yup.ref('password'), null], 'Pola haseł muszą być zgodne!')
+                                    })}
+                                    onSubmit={async (values, { resetForm, setSubmitting }) => {
+                                        setSubmitting(true);
+                                        await AuthService.register(values.email, values.username, values.password)
+                                            .then((response) => {
+                                                // show alert with e-mail send
+                                                this.setState({ registerSuccess: true });
+                                                setSubmitting(false);
+                                            })
+                                            .catch( (error) => {
+                                                if(error.response.status === 409) {
+                                                    this.setState({ registerFailed: true });
+                                                } else {
+                                                    console.log(error);
+                                                }
+                                            })
+                                        setSubmitting(false);
+                                        resetForm();
+                                    }}
+                                >
+                                    {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
+                                        <Form onSubmit={handleSubmit}>
+                                            <Form.Group as={Row} className='mx-5'>
+                                                <Form.Control
+                                                    type='text'
+                                                    placeholder='Adres e-mail'
+                                                    name='email'
+                                                    value={values.email}
+                                                    onChange={handleChange}
+                                                    onBlur={handleBlur}
+                                                    isInvalid={touched.email && errors.email}
+                                                    disabled={isSubmitting}
+                                                />
+                                                {touched.email && errors.email ? (
+                                                    <Form.Control.Feedback type='invalid'>{errors.email}</Form.Control.Feedback>
+                                                ) : null}
+                                            </Form.Group>
+                                            <Form.Group as={Row} className='mx-5'>
+                                                <Form.Control
+                                                    type='text'
+                                                    placeholder='nazwa użytkownika'
+                                                    name='username'
+                                                    value={values.username}
+                                                    onChange={handleChange}
+                                                    onBlur={handleBlur}
+                                                    isInvalid={touched.username && errors.username}
+                                                    disabled={isSubmitting}
+                                                />
+                                                {touched.username && errors.username ? (
+                                                    <Form.Control.Feedback type='invalid'>{errors.username}</Form.Control.Feedback>
+                                                ) : null}
+                                            </Form.Group>
+                                            <Form.Group as={Row} className='mx-5'>
+                                                <Form.Control
+                                                    type='password'
+                                                    placeholder='Hasło'
+                                                    name='password'
+                                                    value={values.password}
+                                                    onChange={handleChange}
+                                                    onBlur={handleBlur}
+                                                    isInvalid={touched.password && errors.password}
+                                                    disabled={isSubmitting}
+                                                />
+                                                {touched.password && errors.password ? (
+                                                    <Form.Control.Feedback type='invalid'>{errors.password}</Form.Control.Feedback>
+                                                ) : null}
+                                            </Form.Group>
+                                            <Form.Group as={Row} className='mx-5'>
+                                                <Form.Control
+                                                    type='password'
+                                                    placeholder='Hasło'
+                                                    name='confirmPassword'
+                                                    value={values.confirmPassword}
+                                                    onChange={handleChange}
+                                                    onBlur={handleBlur}
+                                                    isInvalid={touched.confirmPassword && errors.confirmPassword}
+                                                    disabled={isSubmitting}
+                                                />
+                                                {touched.confirmPassword && errors.confirmPassword ? (
+                                                    <Form.Control.Feedback type='invalid'>{errors.confirmPassword}</Form.Control.Feedback>
+                                                ) : null}
+                                            </Form.Group>
+                                            <Form.Group as={Row} className='d-flex justify-content-center'>
+                                                <Button
+                                                    type='submit'
+                                                    variant='outline-dark'
+                                                    className='my-2'
+                                                    disabled={isSubmitting}>
+                                                    Zarejestruj
+                                                    {isSubmitting && (
+                                                        <Spinner animation='border' variant='secondary' size='sm' className='ml-2' />
+                                                    )}
+                                                </Button>
+                                            </Form.Group>
+                                        </Form>
+                                    )}
+                                </Formik>
                                 <hr className='mx-5' />
                             </Container>
                         </Col>
