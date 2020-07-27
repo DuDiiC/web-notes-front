@@ -49,7 +49,7 @@ class Login extends Component {
                                         username: Yup.string().required('Nazwa użytkownika jest wymagana!'),
                                         password: Yup.string().required('Hasło jest wymagane!')
                                     })}
-                                    onSubmit={ async ( values, { resetForm, setSubmitting }) => {
+                                    onSubmit={ async (values, { resetForm, setSubmitting }) => {
                                         setSubmitting(true);
                                         await AuthService.login(values.username, values.password)
                                             .then(() => {
@@ -70,40 +70,34 @@ class Login extends Component {
                                     {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
                                         <Form onSubmit={handleSubmit}>
                                             <Form.Group as={Row} className='mx-5'>
-                                                <Form.Label column sm={3} className='grey-text'><b>login</b></Form.Label>
-                                                <Col sm={9}>
-                                                    <Form.Control
-                                                        type='text'
-                                                        placeholder='login...'
-                                                        name='username'
-                                                        value={values.username}
-                                                        onChange={handleChange}
-                                                        onBlur={handleBlur}
-                                                        isInvalid={touched.username && errors.username}
-                                                        disabled={this.state.loading}
-                                                    />
-                                                    {touched.username && errors.username ? (
-                                                        <Form.Control.Feedback type='invalid'>{errors.username}</Form.Control.Feedback>
-                                                    ) : null }
-                                                </Col>
+                                                <Form.Control
+                                                    type='text'
+                                                    placeholder='Nazwa użytkownika'
+                                                    name='username'
+                                                    value={values.username}
+                                                    onChange={handleChange}
+                                                    onBlur={handleBlur}
+                                                    isInvalid={touched.username && errors.username}
+                                                    disabled={this.state.loading}
+                                                />
+                                                {touched.username && errors.username ? (
+                                                    <Form.Control.Feedback type='invalid'>{errors.username}</Form.Control.Feedback>
+                                                ) : null}
                                             </Form.Group>
                                             <Form.Group as={Row} className='mx-5'>
-                                                <Form.Label column sm={3} className='grey-text'><b>hasło</b></Form.Label>
-                                                <Col sm={9}>
-                                                    <Form.Control
-                                                        type='password'
-                                                        placeholder='hasło...'
-                                                        name='password'
-                                                        value={values.password}
-                                                        onChange={handleChange}
-                                                        onBlur={handleBlur}
-                                                        isInvalid={touched.password && errors.password}
-                                                        disabled={isSubmitting}
-                                                    />
-                                                    {touched.password && errors.password ? (
-                                                        <Form.Control.Feedback type='invalid'>{errors.password}</Form.Control.Feedback>
-                                                    ) : null }
-                                                </Col>
+                                                <Form.Control
+                                                    type='password'
+                                                    placeholder='Hasło'
+                                                    name='password'
+                                                    value={values.password}
+                                                    onChange={handleChange}
+                                                    onBlur={handleBlur}
+                                                    isInvalid={touched.password && errors.password}
+                                                    disabled={isSubmitting}
+                                                />
+                                                {touched.password && errors.password ? (
+                                                    <Form.Control.Feedback type='invalid'>{errors.password}</Form.Control.Feedback>
+                                                ) : null}
                                             </Form.Group>
                                             <Form.Group as={Row} className='d-flex justify-content-center'>
                                                 <Button
