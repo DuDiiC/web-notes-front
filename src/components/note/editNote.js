@@ -147,7 +147,7 @@ class EditNote extends Component {
                         <Modal.Footer>
                             <Row>
                                 <Button
-                                    variant='light'
+                                    variant='outline-dark'
                                     className='mb-2 mr-2'
                                     onClick={this.handleClose}
                                     disabled={this.state.loading} >
