@@ -61,27 +61,15 @@ class CreateNoteModal extends Component {
 
     createNote = (e) => {
         e.preventDefault();
-        this.setState({
-            loading: true
-        })
         if (this.state.newNote.title && this.state.newNote.content) {
-            console.log('zapisuję!');
+            this.setState({ loading: true });
             NoteService.saveNote(this.state.newNote)
-                .then((response) => {
-                    console.log(response);
-                })
-                .catch(error => {
+                .then(window.location.reload())
+                .catch((error) => {
                     console.log(error);
-                    this.setState({
-                        loading: false
-                    })
+                    this.setState({ loading: false })
                 });
         } else { console.log("Can save empty note!") }
-        this.setState({
-            loading: false
-        })
-        this.handleClose();
-        window.location.reload();
     }
 
     render() {
@@ -122,6 +110,7 @@ class CreateNoteModal extends Component {
                                                     autoComplete='off'
                                                     value={this.state.newNote.title}
                                                     onChange={this.onChangeTitle}
+                                                    disabled={this.state.loading}
                                                 />
                                             </Col>
                                         </Row>
@@ -137,6 +126,7 @@ class CreateNoteModal extends Component {
                                                     autoComplete='off'
                                                     value={this.state.newNote.content}
                                                     onChange={this.onChangeContent}
+                                                    disabled={this.state.loading}
                                                 />
                                             </Col>
                                         </Row>
