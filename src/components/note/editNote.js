@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Modal, Row, Col, Form } from 'react-bootstrap';
 import ReactMarkdown from 'react-markdown';
+import NoteService from './../../services/noteService';
 
 import edit from './../../images/edit-48-grey.png';
 
@@ -59,6 +60,11 @@ class EditNote extends Component {
     editNote(e) {
         // edit note
         e.preventDefault();
+        if(this.state.editNote.title && this.state.editNote.content) {
+            NoteService.updateNote(this.props.note.id, this.state.editNote)
+                .then(window.location.reload())
+                .catch((error) => { console.log(error); })
+        } else { console.log('Can\'t save empty note!'); }
     }
 
     render() {
