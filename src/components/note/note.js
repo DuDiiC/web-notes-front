@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactMarkdown from 'react-markdown';
 import EditNote from './editNote';
+import RemoveNote from './removeNote';
 
 class Note extends Component {
     render() {
@@ -11,6 +12,7 @@ class Note extends Component {
                 <hr className='mt-2 mb-4 p-0' />
                 <ReactMarkdown source={this.props.note.content} />
                 <EditNote note={this.props.note} />
+                <RemoveNote noteId={this.props.note.id}/>
             </div>
         )
     };

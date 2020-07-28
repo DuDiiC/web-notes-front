@@ -53,6 +53,20 @@ class NoteService {
                 .put(API_URL + "notes/" + id, note, config)
         );
     }
+
+    updateNoteStatus(id, noteStatus) {
+        let config = {
+            headers: {
+                Authorization: authHeader()['Authorization'],
+            },
+        }
+        return (
+            axios
+                .put(API_URL + "notes/" + id + "/status",
+                    { noteStatus },
+                    config )
+        )
+    }
 }
 
 export default new NoteService();
