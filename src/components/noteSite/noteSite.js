@@ -8,7 +8,12 @@ class NoteSite extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            note: ""
+            note: {
+                id: '',
+                title: '',
+                content: '',
+                noteStatus: ''
+            },
         };
     }
 
