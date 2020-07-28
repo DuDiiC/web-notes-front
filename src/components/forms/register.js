@@ -78,11 +78,12 @@ class Register extends Component {
                                             .min(8, 'Hasło powinno zawierać 8-16 znaków!')
                                             .max(16, 'Hasło powinno zawierać 8-16 znaków!')
                                             .required('Hasło jest wymagane!')
-                                            .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])/,
+                                            .matches(/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()])/,
                                                 'Hasło powinno zawirać co najmniej jedną: małą literę, dużą literę, cyfrę, znak specjalny'),
                                         confirmPassword: Yup
                                             .string()
                                             .oneOf([Yup.ref('password'), null], 'Pola haseł muszą być zgodne!')
+                                            .required('Hasło jest wymagane!')
                                     })}
                                     onSubmit={async (values, { resetForm, setSubmitting }) => {
                                         setSubmitting(true);
