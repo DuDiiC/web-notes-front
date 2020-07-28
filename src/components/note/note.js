@@ -12,7 +12,7 @@ class Note extends Component {
                 <hr className='mt-2 mb-4 p-0' />
                 <ReactMarkdown source={this.props.note.content} />
                 <EditNote note={this.props.note} />
-                <RemoveNote />
+                <RemoveNote noteId={this.props.note.id}/>
             </div>
         )
     };

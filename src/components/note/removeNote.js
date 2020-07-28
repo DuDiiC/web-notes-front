@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Modal, Button, Spinner } from 'react-bootstrap';
+import { Modal, Button, Spinner, Form } from 'react-bootstrap';
 
 import trash from './../../images/trash-48-grey.png';
+import NoteService from '../../services/noteService';
 
 class RemoveNote extends Component {
     constructor(props) {
@@ -21,7 +22,24 @@ class RemoveNote extends Component {
 
     removeNote(e) {
         e.preventDefault();
-        //usuwanie notatki - logika
+        if (this.props.noteId) {
+            this.setState({ loading: true }, () => {
+                NoteService.updateNoteStatus(this.props.noteId, "DELETED")
+                    .then((response) => {
+                        console.log(response);
+                        this.setState({
+                            loading: false,
+                            show: false
+                        });
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                        this.setState({ loading: false });
+                    })
+            })
+        } else {
+            console.log('Can\'t remove note without ID.');
+        }
     }
 
     render() {
@@ -51,23 +69,34 @@ class RemoveNote extends Component {
                     <Modal.Body>
                         <p>Czy na pewno chcesz przenieść notatkę do kosza?</p>
                     </Modal.Body>
-                    <Modal.Footer onSubmit={this.removeNote}>
-                        <Button
-                            variant='outline-dark'
-                            className='mb-2 mr-2'
-                            onClick={this.handleClose} >
-                            Nie
-                        </Button>
-                        <Button
-                            type='submit'
-                            variant='warning'
-                            className='mb-2'>
-                            Tak
-                        </Button>
+                    <Modal.Footer>
+                        <Form onSubmit={this.removeNote}>
+                            <Button
+                                variant='outline-dark'
+                                className='mb-2 mr-2'
+                                onClick={this.handleClose}
+                                disabled={this.state.loading} >
+                                Nie
+                            </Button>
+                            <Button
+                                type='submit'
+                                variant='warning'
+                                className='mb-2'
+                                disabled={this.state.loading} >
+                                Tak
+                            {this.state.loading && (
+                                    <Spinner
+                                        animation='border'
+                                        variant='secondary'
+                                        size='sm'
+                                        className='ml-2' />
+                                )}
+                            </Button>
+                        </Form>
                     </Modal.Footer>
                 </Modal>
             </>
-         );
+        );
     }
 }
 
