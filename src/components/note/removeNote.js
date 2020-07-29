@@ -25,13 +25,12 @@ class RemoveNote extends Component {
         if (this.props.noteId) {
             this.setState({ loading: true }, () => {
                 NoteService.updateNoteStatus(this.props.noteId, "DELETED")
-                    .then((response) => {
-                        console.log(response);
+                    .then(
                         this.setState({
                             loading: false,
                             show: false
-                        });
-                    })
+                        })
+                    )
                     .catch((error) => {
                         console.log(error);
                         this.setState({ loading: false });
