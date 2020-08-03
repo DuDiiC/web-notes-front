@@ -25,7 +25,7 @@ class Register extends Component {
         return (
             <div>
                 {localStorage.getItem('token') && (
-                    <Redirect to="/notes" />
+                    <Redirect to="/notes/active" />
                 )}
                 <div className='first-color-bg'>
                     <Row>
