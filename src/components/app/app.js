@@ -77,13 +77,13 @@ class App extends Component {
         </div>
 
         <Switch>
-          <Route path="/notes/active">
+          <Route path="/notes/active" key='active'>
             <NotesSite noteStatus='ACTIVE'></NotesSite>
           </Route>
-          <Route path="/notes/archived">
+          <Route path="/notes/archived" key='archived'>
             <NotesSite noteStatus='ARCHIVED'></NotesSite>
           </Route>
-          <Route path="/notes/deleted">
+          <Route path="/notes/deleted" key='deleted'>
             <NotesSite noteStatus='DELETED'></NotesSite>
           </Route>
           <Route path="/notes/:id" component={NoteSite} />
