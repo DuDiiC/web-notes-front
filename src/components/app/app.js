@@ -34,55 +34,63 @@ class App extends Component {
 
     return (
       <Router>
-          <div>
-            <Navbar collapseOnSelect expand="sm" className='white-bg'>
-              <Navbar.Brand>
-                <Link to='/' className='link-text' style={{ textDecoration: 'none' }}>
-                  <Image src={logo} className='img-shadow mr-2'></Image>
-                  <b className='grey-text'>WEB NOTES</b>
-                </Link>
-              </Navbar.Brand>
-              <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-              <Navbar.Collapse id="responsive-navbar-nav">
-                { token ? (
+        <div>
+          <Navbar collapseOnSelect expand="sm" className='white-bg'>
+            <Navbar.Brand>
+              <Link to='/' className='link-text' style={{ textDecoration: 'none' }}>
+                <Image src={logo} className='img-shadow mr-2'></Image>
+                <b className='grey-text'>WEB NOTES</b>
+              </Link>
+            </Navbar.Brand>
+            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+            <Navbar.Collapse id="responsive-navbar-nav">
+              {token ? (
+                <Nav className='ml-auto'>
+                  <Link to='/notes/active' style={{ textDecoration: 'none' }}>
+                    <Button variant='warning' className='m-2'>
+                      <b className='grey-text'>NOTATKI</b>
+                    </Button>
+                  </Link>
+                  <Link to='/' style={{ textDecoration: 'none' }}>
+                    <Button variant='warning' className='m-2' onClick={this.logout}>
+                      <b className='grey-text'>WYLOGUJ</b>
+                    </Button>
+                  </Link>
+                </Nav>
+              ) : (
                   <Nav className='ml-auto'>
-                    <Link to='/notes' style={{ textDecoration: 'none' }}>
+                    <Link to='/login' style={{ textDecoration: 'none' }} >
                       <Button variant='warning' className='m-2'>
-                        <b className='grey-text'>NOTATKI</b>
+                        <b className='grey-text'>LOGOWANIE</b>
                       </Button>
                     </Link>
-                    <Link to='/' style={{ textDecoration: 'none' }}>
-                      <Button variant='warning' className='m-2' onClick={this.logout}>
-                        <b className='grey-text'>WYLOGUJ</b>
+                    <Link to='/register' style={{ textDecoration: 'none' }} >
+                      <Button variant='warning' className='m-2'>
+                        <b className='grey-text'>REJESTRACJA</b>
                       </Button>
                     </Link>
                   </Nav>
-                ) : (
-                    <Nav className='ml-auto'>
-                      <Link to='/login' style={{ textDecoration: 'none' }} >
-                        <Button variant='warning' className='m-2'>
-                          <b className='grey-text'>LOGOWANIE</b>
-                        </Button>
-                      </Link>
-                      <Link to='/register' style={{ textDecoration: 'none' }} >
-                        <Button variant='warning' className='m-2'>
-                          <b className='grey-text'>REJESTRACJA</b>
-                        </Button>
-                      </Link>
-                    </Nav>
-                  )
-                }
-              </Navbar.Collapse>
-            </Navbar>
-          </div>
+                )
+              }
+            </Navbar.Collapse>
+          </Navbar>
+        </div>
 
-          <Switch>
-            <Route path="/notes/:id" component={NoteSite} />
-            <Route path="/notes" component={NotesSite} />
-            <Route path='/register' component={Register} />
-            <Route path="/login" component={Login} />
-            <Route path="/" component={LandingPage} />
-          </Switch>
+        <Switch>
+          <Route path="/notes/active">
+            <NotesSite noteStatus='ACTIVE'></NotesSite>
+          </Route>
+          <Route path="/notes/archived">
+            <NotesSite noteStatus='ARCHIVED'></NotesSite>
+          </Route>
+          <Route path="/notes/deleted">
+            <NotesSite noteStatus='DELETED'></NotesSite>
+          </Route>
+          <Route path="/notes/:id" component={NoteSite} />
+          <Route path='/register' component={Register} />
+          <Route path="/login" component={Login} />
+          <Route path="/" component={LandingPage} />
+        </Switch>
       </Router>
     );
   }
