@@ -29,7 +29,7 @@ class NotesSite extends Component {
                 const user = response.data;
                 this.setState({ user });
                 if (this.state.user.id) {
-                    NoteService.getUserNotes(this.state.user.id)
+                    NoteService.getUserNotes(this.state.user.id, this.props.noteStatus)
                         .then((response) => {
                             const notes = response.data;
                             this.setState({ notes })
