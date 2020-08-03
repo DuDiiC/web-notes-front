@@ -63,7 +63,7 @@ class NotesSite extends Component {
                                 <Button
                                     variant='warning'
                                     block
-                                    disabled={this.props.noteStatus === "ACTIVE"}>
+                                    active={this.props.noteStatus === "ACTIVE"}>
                                     <b>AKTYWNE</b>
                                 </Button>
                             </Link>
@@ -73,7 +73,7 @@ class NotesSite extends Component {
                                 <Button
                                     variant='warning'
                                     block
-                                    disabled={this.props.noteStatus === "ARCHIVED"}>
+                                    active={this.props.noteStatus === "ARCHIVED"}>
                                     <b>ARCHIWUM</b>
                                 </Button>
                             </Link>
@@ -83,7 +83,7 @@ class NotesSite extends Component {
                                 <Button
                                     variant='warning'
                                     block
-                                    disabled={this.props.noteStatus === "DELETED"}>
+                                    active={this.props.noteStatus === "DELETED"}>
                                     <b>KOSZ</b>
                                 </Button>
                             </Link>
