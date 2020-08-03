@@ -24,7 +24,7 @@ class Login extends Component {
         return (
             <div>
                 {localStorage.getItem('token') && (
-                    <Redirect to="/notes" />
+                    <Redirect to="/notes/active" />
                 )}
                 <div className='first-color-bg'>
                     <Row>
@@ -59,7 +59,7 @@ class Login extends Component {
                                         setSubmitting(true);
                                         await AuthService.login(values.username, values.password)
                                             .then(() => {
-                                                this.props.history.push("/notes");
+                                                this.props.history.push("/notes/active");
                                                 window.location.reload();
                                             })
                                             .catch((error) => {

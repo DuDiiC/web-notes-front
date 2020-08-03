@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Redirect, Link } from 'react-router-dom';
+import { Container, Button, Row, Col } from 'react-bootstrap';
 import ReactLoading from 'react-loading';
 
 import CompactNote from '../note/compactNote';
@@ -24,27 +24,27 @@ class NotesSite extends Component {
 
     componentDidMount() {
         this.setState({ loading: true }, () => {
-                UserService.getCurrentUser()
-            .then((response) => {
-                const user = response.data;
-                this.setState({ user });
-                if (this.state.user.id) {
-                    NoteService.getUserNotes(this.state.user.id)
-                        .then((response) => {
-                            const notes = response.data;
-                            this.setState({ notes })
-                            this.setState({ loading: false });
-                        })
-                        .catch(error => {
-                            console.log(error);
-                            this.setState({ loading: false });
-                        })
-                }
-            })
-            .catch(error => {
-                console.log(error);
-                this.setState({ loading: false });
-            });
+            UserService.getCurrentUser()
+                .then((response) => {
+                    const user = response.data;
+                    this.setState({ user });
+                    if (this.state.user.id) {
+                        NoteService.getUserNotes(this.state.user.id, this.props.noteStatus)
+                            .then((response) => {
+                                const notes = response.data;
+                                this.setState({ notes })
+                                this.setState({ loading: false });
+                            })
+                            .catch(error => {
+                                console.log(error);
+                                this.setState({ loading: false });
+                            })
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                    this.setState({ loading: false });
+                });
         });
     }
 
@@ -55,10 +55,40 @@ class NotesSite extends Component {
                     <Redirect to="/login" />
                 )}
                 <Container>
-                    <h1 className='text-center'>
-                        Witaj {this.state.user.username}!
-                    </h1>
-
+                    <Row className='mt-5 mb-3'>
+                        <Col sm={4} className='my-1'>
+                            <Link
+                                to='/notes/active'
+                                style={{ textDecoration: "none" }} >
+                                <Button
+                                    variant='warning'
+                                    block
+                                    disabled={this.props.noteStatus === "ACTIVE"}>
+                                    <b>AKTYWNE</b>
+                                </Button>
+                            </Link>
+                        </Col>
+                        <Col sm={4} className='my-1'>
+                            <Link to='/notes/archived' style={{ textDecoration: "none" }}>
+                                <Button
+                                    variant='warning'
+                                    block
+                                    disabled={this.props.noteStatus === "ARCHIVED"}>
+                                    <b>ARCHIWUM</b>
+                                </Button>
+                            </Link>
+                        </Col>
+                        <Col sm={4} className='my-1'>
+                            <Link to='/notes/deleted' style={{ textDecoration: "none" }}>
+                                <Button
+                                    variant='warning'
+                                    block
+                                    disabled={this.props.noteStatus === "DELETED"}>
+                                    <b>KOSZ</b>
+                                </Button>
+                            </Link>
+                        </Col>
+                    </Row>
                     <Row>
                         {this.state.loading ? (
                             <>
