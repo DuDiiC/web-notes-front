@@ -12,9 +12,15 @@ class Note extends Component {
                 <h3>{this.props.note.title}</h3>
                 <hr className='mt-2 mb-4 p-0' />
                 <ReactMarkdown source={this.props.note.content} />
-                <EditNote note={this.props.note} />
-                <ArchiveNote noteId={this.props.note.id} />
-                <RemoveNote noteId={this.props.note.id}/>
+                { this.props.note.noteStatus === 'ACTIVE' && (
+                    <EditNote note={this.props.note} />
+                )}
+                { this.props.note.noteStatus !== 'ARCHIVED' && (
+                    <ArchiveNote noteId={this.props.note.id} />
+                )}
+                { this.props.note.noteStatus !== 'DELETED' && (
+                    <RemoveNote noteId={this.props.note.id}/>
+                )}
             </div>
         )
     };
