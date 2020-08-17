@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Modal, Button, Spinner, Form } from 'react-bootstrap';
 
-import archive from './../../images/archive-32-grey.png';
-import NoteService from '../../services/noteService';
+import archive from './../../../images/archive-32-grey.png';
+import NoteService from '../../../services/noteService';
 
 class ArchiveNote extends Component {
     constructor(props) {

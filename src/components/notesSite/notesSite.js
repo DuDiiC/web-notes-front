@@ -4,7 +4,7 @@ import { Container, Button, Row, Col } from 'react-bootstrap';
 import ReactLoading from 'react-loading';
 
 import CompactNote from '../note/compactNote';
-import CreateNoteModal from './createNote';
+import CreateNote from '../modals/createNote';
 
 import UserService from '../../services/userService';
 import NoteService from '../../services/noteService';
@@ -100,7 +100,7 @@ class NotesSite extends Component {
                                         return <CompactNote className='mx-2' note={note} key={note.id} />
                                     })}
                                     <Col sm={6} md={4} lg={3} className='my-auto text-center'>
-                                        <CreateNoteModal />
+                                        <CreateNote />
                                     </Col>
                                 </>
                             )}

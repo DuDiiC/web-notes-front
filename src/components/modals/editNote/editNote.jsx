@@ -1,24 +1,25 @@
 import React, { Component } from 'react';
-import { Modal, Button, Form, Row, Col, Spinner } from 'react-bootstrap';
+import { Button, Modal, Row, Col, Form, Spinner } from 'react-bootstrap';
 import ReactMarkdown from 'react-markdown';
-import NoteService from '../../services/noteService';
+import NoteService from './../../../services/noteService';
 
-class CreateNoteModal extends Component {
+import edit from './../../../images/edit-48-grey.png';
 
+class EditNote extends Component {
     constructor(props) {
         super(props);
         this.state = {
             show: false,
-            newNote: {
-                title: '',
-                content: '',
+            editNote: {
+                title: this.props.note.title,
+                content: this.props.note.content,
             },
-            loading: false,
+            loading: false
         }
 
         this.handleShow = this.handleShow.bind(this);
         this.handleClose = this.handleClose.bind(this);
-        this.createNote = this.createNote.bind(this);
+        this.editNote = this.editNote.bind(this);
         this.onChangeTitle = this.onChangeTitle.bind(this);
         this.onChangeContent = this.onChangeContent.bind(this);
     }
@@ -26,24 +27,22 @@ class CreateNoteModal extends Component {
     handleClose() {
         this.setState({
             show: false,
-            newNote: {
-                title: '',
-                content: '',
+            editNote: {
+                title: this.props.note.title,
+                content: this.props.note.content,
             },
         });
     }
 
     handleShow() {
-        this.setState({
-            show: true,
-        });
+        this.setState({ show: true });
     }
 
     onChangeTitle(e) {
         const { value } = e.target;
         this.setState(prevState => ({
-            newNote: {
-                ...prevState.newNote,
+            editNote: {
+                ...prevState.editNote,
                 title: value,
             },
         }));
@@ -52,47 +51,51 @@ class CreateNoteModal extends Component {
     onChangeContent(e) {
         const { value } = e.target;
         this.setState(prevState => ({
-            newNote: {
-                ...prevState.newNote,
+            editNote: {
+                ...prevState.editNote,
                 content: value,
             },
         }));
     }
 
-    createNote = (e) => {
+    editNote(e) {
+        // edit note
         e.preventDefault();
-        if (this.state.newNote.title && this.state.newNote.content) {
+        if(this.state.editNote.title && this.state.editNote.content) {
             this.setState({ loading: true });
-            NoteService.saveNote(this.state.newNote)
+            NoteService.updateNote(this.props.note.id, this.state.editNote)
                 .then(window.location.reload())
                 .catch((error) => {
                     console.log(error);
-                    this.setState({ loading: false })
-                });
-        } else { console.log("Can save empty note!") }
+                    this.setState({ loading: false });
+                })
+        } else {
+            console.log('Can\'t save empty note!');
+        }
     }
 
     render() {
         const { show } = this.state;
         return (
             <>
-                <Button
-                    variant='warning'
-                    size='lg'
-                    className='m-3'
+                <input
+                    type='image'
+                    src={edit}
+                    alt='edytuj'
+                    width={30}
+                    height={30}
+                    className='link-text'
                     onClick={this.handleShow}
-                >
-                    Dodaj notatkę
-                </Button>
+                />
 
                 <Modal
                     show={show}
                     onHide={this.handleClose}
                     size='xl'>
                     <Modal.Header closeButton>
-                        <Modal.Title>Nowa notatka</Modal.Title>
+                        <Modal.Title>Edycja notatki</Modal.Title>
                     </Modal.Header>
-                    <Form onSubmit={this.createNote}>
+                    <Form onSubmit={this.editNote}>
                         <Modal.Body>
                             <Row>
                                 <Col xl={6}>
@@ -108,7 +111,7 @@ class CreateNoteModal extends Component {
                                                     placeholder='tytuł...'
                                                     name='title'
                                                     autoComplete='off'
-                                                    value={this.state.newNote.title}
+                                                    value={this.state.editNote.title}
                                                     onChange={this.onChangeTitle}
                                                     disabled={this.state.loading}
                                                 />
@@ -124,7 +127,7 @@ class CreateNoteModal extends Component {
                                                     placeholder='treść...'
                                                     name='content'
                                                     autoComplete='off'
-                                                    value={this.state.newNote.content}
+                                                    value={this.state.editNote.content}
                                                     onChange={this.onChangeContent}
                                                     disabled={this.state.loading}
                                                 />
@@ -137,27 +140,27 @@ class CreateNoteModal extends Component {
                                         <b className='grey-text'>Podgląd:</b>
                                     </Row>
                                     <hr />
-                                    <ReactMarkdown source={this.state.newNote.content} />
+                                    <ReactMarkdown source={this.state.editNote.content} />
                                 </Col>
                             </Row>
                         </Modal.Body>
                         <Modal.Footer>
                             <Row>
                                 <Button
+                                    variant='outline-dark'
+                                    className='mb-2 mr-2'
+                                    onClick={this.handleClose}
+                                    disabled={this.state.loading} >
+                                    Odrzuć zmiany
+                                </Button>
+                                <Button
                                     type='submit'
                                     variant='warning'
                                     className='mb-2'
-                                    disabled={this.state.loading}
-                                >
-                                    {this.state.loading ? (
-                                        <>
-                                            Tworzę...
-                                            <Spinner animation='border' variant='secondary' size='sm' className='ml-2' />
-                                        </>
-                                    ) : (
-                                            <>
-                                            Stwórz
-                                        </>
+                                    disabled={this.state.loading} >
+                                    Edytuj
+                                    {this.state.loading && (
+                                        <Spinner animation='border' variant='secondary' size='sm' className='ml-2' />
                                     )}
                                 </Button>
                             </Row>
@@ -169,4 +172,4 @@ class CreateNoteModal extends Component {
     }
 }
 
-export default CreateNoteModal;
+export default EditNote;

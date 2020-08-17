@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import ReactMarkdown from 'react-markdown';
-import EditNote from './editNote';
-import ArchiveNote from './archiveNote'
-import RemoveNote from './removeNote';
+import EditNote from '../modals/editNote';
+import ArchiveNote from '../modals/archiveNote';
+import RemoveNote from '../modals/removeNote';
 
 class Note extends Component {
     render() {
-        return(
+        return (
             <div className='note-border m-3 p-3'>
                 <p>{this.props.note.createdAt}</p>
                 <h3>{this.props.note.title}</h3>
