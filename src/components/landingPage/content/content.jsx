@@ -1,17 +1,14 @@
 import React from 'react';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
-import Image from 'react-bootstrap/Image';
-import LandingPageContentElement from './landingPageContentElement';
+import { Container, Row, Col, Button, Image } from 'react-bootstrap';
 
-import noteImg from './../../images/notes-144.png';
-import contentImg1 from './../../images/markdown-white-100.png';
-import contentImg2 from './../../images/todo-list-white-100.png';
-import contentImg3 from './../../images/responsive-white-100.png';
+import ContentElement from './contentElement';
 
-function LandingPageContent() {
+import noteImg from './../../../images/notes-144.png';
+import contentImg1 from './../../../images/markdown-white-100.png';
+import contentImg2 from './../../../images/todo-list-white-100.png';
+import contentImg3 from './../../../images/responsive-white-100.png';
+
+function Content() {
     return (
         <div className='white-bg'>
             <Container>
@@ -55,15 +52,15 @@ function LandingPageContent() {
             <Container fluid className='mt-5 first-color-bg box-shadow'>
                 <Row className='py-5'>
                     <Col lg={4} className='text-center my-auto'>
-                        <LandingPageContentElement
+                        <ContentElement
                             header="Obsługa Markdowna"
                             image={contentImg1}
-                            content="Notatki są tworzone przy użyciu prostego w obsłudze języka Markdown, 
+                            content="Notatki są tworzone przy użyciu prostego w obsłudze języka Markdown,
                             który umożliwia tworzenie notatek zawierających listy, tabele czy fragmenty kodu."
                         />
                     </Col>
                     <Col lg={4} className='text-center my-auto'>
-                        <LandingPageContentElement
+                        <ContentElement
                             header="Twórz, archiwizuj, usuwaj"
                             image={contentImg2}
                             content="Zarządzaj swoimi notatkami i przeglądaj tylko te aktywne. Pozostałe możesz
@@ -71,7 +68,7 @@ function LandingPageContent() {
                         />
                     </Col>
                     <Col lg={4} className='text-center my-auto'>
-                        <LandingPageContentElement
+                        <ContentElement
                             header="Wygodny, responsywny interfejs"
                             image={contentImg3}
                             content="Aplikacji można używać zarówno na komputerze, tablecie jak i telefonie -
@@ -86,4 +83,4 @@ function LandingPageContent() {
 
 
 
-export default LandingPageContent;
+export default Content;

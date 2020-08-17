@@ -1,11 +1,7 @@
 import React from 'react';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Image from 'react-bootstrap/Image';
+import { Container, Row, Image } from 'react-bootstrap';
 
-import './landingPage.css';
-
-function LandingPageContentElement(props) {
+function ContentElement(props) {
     return (
         <Container className='p-2 mt-4'>
             <Row className='d-flex justify-content-center mx-4 pt-3'>
@@ -25,4 +21,4 @@ function LandingPageContentElement(props) {
     );
 }
 
-export default LandingPageContentElement;
+export default ContentElement;
