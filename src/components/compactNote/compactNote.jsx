@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Col } from 'react-bootstrap';
 
-import './note.css';
+import './compactNote.css';
 
 class CompactNote extends Component {
     render() {

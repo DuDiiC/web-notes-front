@@ -3,7 +3,7 @@ import { Redirect, Link } from 'react-router-dom';
 import { Container, Button, Row, Col } from 'react-bootstrap';
 import ReactLoading from 'react-loading';
 
-import CompactNote from '../note/compactNote';
+import CompactNote from '../compactNote';
 import CreateNote from '../modals/createNote';
 
 import UserService from '../../services/userService';
