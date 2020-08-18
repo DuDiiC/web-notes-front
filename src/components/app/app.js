@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import { Navbar, Nav, Button, Image } from 'react-bootstrap';
-import LandingPage from '../landingPage/landingPage';
+import LandingPage from '../landingPage';
 import Register from '../forms/register';
 import Login from '../forms/login';
-import NotesSite from '../notesSite/notesSite';
-import NoteSite from '../noteSite/noteSite';
+import NotesSite from '../notesSite';
+import NoteSite from '../noteSite';
 import AuthService from '../../services/authService';
 
 import logo from './../../images/notes-48.png';

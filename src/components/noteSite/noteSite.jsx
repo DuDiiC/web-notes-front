@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Container } from 'react-bootstrap';
 import ReactLoading from 'react-loading';
-import Note from '../note/note';
+import Note from '../note';
 import NoteService from '../../services/noteService';
 
 class NoteSite extends Component {
