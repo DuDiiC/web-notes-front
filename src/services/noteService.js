@@ -82,6 +82,19 @@ class NoteService {
                     config )
         )
     }
+
+    deleteNote(id) {
+        let config = {
+            headers: {
+                Authorization: authHeader()['Authorization'],
+            },
+        }
+        return (
+            axios
+                .delete(API_URL + 'notes/' + id,
+                        config )
+        )
+    }
 }
 
 export default new NoteService();
