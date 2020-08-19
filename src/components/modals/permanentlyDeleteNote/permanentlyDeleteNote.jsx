@@ -25,12 +25,13 @@ class PermanentlyDeleteNote extends Component {
         if (this.props.noteId) {
             this.setState({ loading: true }, () => {
                 NoteService.deleteNote(this.props.noteId)
-                    .then(
+                    .then(() => {
                         this.setState({
                             loading: false,
                             show: false
-                        })
-                    )
+                        });
+                        window.location.replace('/notes/deleted');
+                    })
                     .catch((error) => {
                         console.log(error);
                         this.setState({ loading: false });
