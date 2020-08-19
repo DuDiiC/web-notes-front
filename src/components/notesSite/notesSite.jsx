@@ -99,9 +99,11 @@ class NotesSite extends Component {
                                     {this.state.notes.map((note) => {
                                         return <CompactNote className='mx-2' note={note} key={note.id} />
                                     })}
-                                    <Col sm={6} md={4} lg={3} className='my-auto text-center'>
-                                        <CreateNote />
-                                    </Col>
+                                    {this.props.noteStatus === 'ACTIVE' && (
+                                        <Col sm={6} md={4} lg={3} className='my-auto text-center'>
+                                            <CreateNote />
+                                        </Col>
+                                    )}
                                 </>
                             )}
                     </Row>
