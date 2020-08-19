@@ -1,5 +1,8 @@
-html, body {
-  background-color: #ffc107;
+html {
+    background-color: #ffc107;
+}
+
+body, body * {
 }
 
 .first-color-bg {
