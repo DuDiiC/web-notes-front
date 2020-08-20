@@ -1,7 +1,5 @@
 import axios from 'axios';
-
-const APP_URL = 'https://web-notes-server.herokuapp.com/';
-// const APP_URL = 'http://localhost:8080/';
+import { APP_URL } from '../constants';
 
 class AuthService {
     login(username, password) {

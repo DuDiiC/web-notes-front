@@ -7,8 +7,7 @@ import Login from '../forms/login';
 import NotesSite from '../notesSite';
 import NoteSite from '../noteSite';
 import AuthService from '../../services/authService';
-
-import logo from './../../images/notes-48.png';
+import logo from '../../images/notes-48.png';
 import './app.css';
 
 class App extends Component {

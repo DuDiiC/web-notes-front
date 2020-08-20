@@ -1,8 +1,6 @@
 import axios from 'axios';
 import authHeader from './authHeader';
-
-const API_URL = 'https://web-notes-server.herokuapp.com/api/';
-// const API_URL = 'http://localhost:8080/api/';
+import { API_URL } from '../constants';
 
 class NoteService {
 

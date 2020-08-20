@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Col } from 'react-bootstrap';
 
-import DateConverter from './../../services/dateConverter';
+import DateConverter from '../../services/dateConverter';
 
 import './compactNote.css';
 

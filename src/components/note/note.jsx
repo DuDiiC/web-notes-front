@@ -5,8 +5,7 @@ import EditNote from '../modals/editNote';
 import ArchiveNote from '../modals/archiveNote';
 import RemoveNote from '../modals/removeNote';
 import PermanentlyRemoveNote from '../modals/permanentlyDeleteNote';
-
-import DateConverter from './../../services/dateConverter';
+import DateConverter from '../../services/dateConverter';
 
 class Note extends Component {
 

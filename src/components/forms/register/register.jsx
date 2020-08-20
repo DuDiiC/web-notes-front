@@ -3,12 +3,9 @@ import { Link, Redirect } from 'react-router-dom';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { Container, Form, Button, Image, Spinner, Row, Col, Alert } from 'react-bootstrap';
-
-import AuthService from './../../../services/authService';
-
-import './../forms.css';
-
-import logo from './../../../images/notes-144.png';
+import AuthService from '../../../services/authService';
+import '../forms.css';
+import logo from '../../../images/notes-144.png';
 
 class Register extends Component {
 

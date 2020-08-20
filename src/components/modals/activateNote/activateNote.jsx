@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Modal, Button, Spinner, Form } from 'react-bootstrap';
-
-import activate from './../../../images/activate-grey-48.png';
+import activate from '../../../images/activate-grey-48.png';
 import NoteService from '../../../services/noteService';
 
 class ActivateNote extends Component {

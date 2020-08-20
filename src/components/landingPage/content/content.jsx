@@ -1,12 +1,10 @@
 import React from 'react';
 import { Container, Row, Col, Button, Image } from 'react-bootstrap';
-
 import ContentElement from './contentElement';
-
-import noteImg from './../../../images/notes-144.png';
-import contentImg1 from './../../../images/markdown-white-100.png';
-import contentImg2 from './../../../images/todo-list-white-100.png';
-import contentImg3 from './../../../images/responsive-white-100.png';
+import noteImg from '../../../images/notes-144.png';
+import contentImg1 from '../../../images/markdown-white-100.png';
+import contentImg2 from '../../../images/todo-list-white-100.png';
+import contentImg3 from '../../../images/responsive-white-100.png';
 
 function Content() {
     return (

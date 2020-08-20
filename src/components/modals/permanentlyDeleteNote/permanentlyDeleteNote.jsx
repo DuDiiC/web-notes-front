@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Modal, Button, Spinner, Form } from 'react-bootstrap';
-
-import remove from './../../../images/delete-48-grey.png';
+import remove from '../../../images/delete-48-grey.png';
 import NoteService from '../../../services/noteService';
 
 class PermanentlyDeleteNote extends Component {

@@ -3,10 +3,9 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
-
-import github from './../../../images/github-black-96.png';
-import linkedin from './../../../images/linkedin-black-100.png';
-import facebook from './../../../images/facebook-black-100.png';
+import github from '../../../images/github-black-96.png';
+import linkedin from '../../../images/linkedin-black-100.png';
+import facebook from '../../../images/facebook-black-100.png';
 
 function Footer() {
     return (

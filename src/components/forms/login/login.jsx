@@ -3,12 +3,9 @@ import { Link, Redirect } from 'react-router-dom';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { Container, Row, Col, Form, Button, Image, Spinner, Alert } from 'react-bootstrap';
-
 import AuthService from '../../../services/authService';
-
-import './../forms.css';
-
-import logo from './../../../images/notes-144.png';
+import '../forms.css';
+import logo from '../../../images/notes-144.png';
 
 class Login extends Component {
 

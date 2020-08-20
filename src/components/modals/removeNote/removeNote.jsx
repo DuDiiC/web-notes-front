@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Modal, Button, Spinner, Form } from 'react-bootstrap';
-
-import trash from './../../../images/trash-48-grey.png';
+import trash from '../../../images/trash-48-grey.png';
 import NoteService from '../../../services/noteService';
 
 class RemoveNote extends Component {

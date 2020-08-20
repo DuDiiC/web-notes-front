@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { Button, Modal, Row, Col, Form, Spinner } from 'react-bootstrap';
 import ReactMarkdown from 'react-markdown';
-import NoteService from './../../../services/noteService';
-
-import edit from './../../../images/edit-48-grey.png';
+import NoteService from '../../../services/noteService';
+import edit from '../../../images/edit-48-grey.png';
 
 class EditNote extends Component {
     constructor(props) {
