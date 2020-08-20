@@ -6,12 +6,14 @@ import ArchiveNote from '../modals/archiveNote';
 import RemoveNote from '../modals/removeNote';
 import PermanentlyRemoveNote from '../modals/permanentlyDeleteNote';
 
+import DateConverter from './../../services/dateConverter';
+
 class Note extends Component {
 
     render() {
         return (
             <div className='note-border m-3 p-3'>
-                <p>{this.props.note.createdAt}</p>
+                <p>{DateConverter.toReadableDate(this.props.note.createdAt)}</p>
                 <h3>{this.props.note.title}</h3>
                 <hr className='mt-2 mb-4 p-0' />
                 <ReactMarkdown source={this.props.note.content} />
